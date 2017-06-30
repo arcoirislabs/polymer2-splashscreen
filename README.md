@@ -2,6 +2,13 @@
 
 Splash Screen element for Polymer v2 
 
+
+#### Important
+
+This element DOES NOT works with Polymer 1.x 
+
+The 1.x version will be available soon
+
 #### How to Use
 
 Here is how to use the `<splash-screen>` element
