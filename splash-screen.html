@@ -161,20 +161,29 @@
                         observer: '_closeSplash'
                     },
                     destroy: {
-                        type: Boolean,
-                        observer: '_destroyFunction'
+                        type: Boolean
                     },
                     backgroundStyle: {
                         type: String
                     }
                 };
             }
+            ready() {
+                super.ready();
+                console.log("ready");
+            }
+
             disconnectedCallback() {
                 super.disconnectedCallback();
-                console.log("dis")
+                console.log("disco");
             }
-            _destroyFunction(d) {
-                if (d) {
+            connectedCallback() {
+                super.connectedCallback();
+                console.log("conne")
+            }
+            _destroyFunction() {
+
+                if (this.destroy) {
                     this.remove();
                 }
             }
@@ -186,6 +195,7 @@
                     this.updateStyles({
                         'display': 'none'
                     });
+                    this._destroyFunction();
                 }
             }
         }

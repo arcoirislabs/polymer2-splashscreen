@@ -9,9 +9,7 @@
 
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
 
-    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-    <link rel="import" href="../splash-screen.html">
+    <link rel="import" href="./splash-screen-demo-element.html">
 
     <custom-style>
         <style is="custom-style" include="demo-pages-shared-styles">
@@ -21,21 +19,8 @@
 </head>
 
 <body>
-    <div class="vertical-section-container centered">
-        <h3>Basic splash-screen demo</h3>
-        <demo-snippet>
-            <template>
-        <splash-screen align="middle" show="[[app_ready]]" background-style="#432" destroy="[[app_ready]]">
-          <img src="images/manifest/icon-48x48.png" class="center-aligned" slot="logo" alt="">
-          <div slot="content">
+    <splash-screen-demo-element></splash-screen-demo-element>
 
-            <p>asjkdhakjshdkjash</p>
-          </div>
-
-        </splash-screen>
-      </template>
-        </demo-snippet>
-    </div>
 </body>
 
 </html>

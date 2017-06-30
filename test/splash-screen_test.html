@@ -7,8 +7,8 @@
 
     <title>splash-screen test</title>
 
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-    <script src="../../web-component-tester/browser.js"></script>
+    <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../bower_components/web-component-tester/browser.js"></script>
 
     <link rel="import" href="../splash-screen.html">
 </head>
@@ -17,65 +17,53 @@
 
     <test-fixture id="BasicTestFixture">
         <template>
-        <splash-screen></splash-screen>
+        <splash-screen align="middle" show="true" background-style="#3498db" destroy="false">
+                
+                <div slot="content">
+
+                  <h1>Welcome to splash-screen</h1>
+                </div>
+
+              </splash-screen>
       </template>
     </test-fixture>
-
-    <test-fixture id="ShowSplashScreen">
-        <template>
-        <splash-screen prop1="new-prop1"></splash-screen>
-      </template>
-    </test-fixture>
-
     <test-fixture id="ReuseSplashScreen">
         <template>
-        <splash-screen prop1="new-prop1"></splash-screen>
+        <splash-screen align="middle" show="true" background-style="#3498db" destroy="false">
+                
+                <div slot="content">
+
+                  <h1>Welcome to splash-screen</h1>
+                </div>
+
+              </splash-screen>
       </template>
     </test-fixture>
 
-    <test-fixture id="DestroySplashScreen">
-        <template>
-        <splash-screen prop1="new-prop1"></splash-screen>
-      </template>
-    </test-fixture>
-
-    <test-fixture id="SetChangeBackground">
-        <template>
-        <splash-screen prop1="new-prop1"></splash-screen>
-      </template>
-    </test-fixture>
-
-    <test-fixture id="SetAlignmentOfContent">
-        <template>
-        <splash-screen prop1="new-prop1"></splash-screen>
-      </template>
-    </test-fixture>
-
-    <test-fixture id="ChangedPropertyTestFixture">
-        <template>
-        <splash-screen prop1="new-prop1"></splash-screen>
-      </template>
-    </test-fixture>
 
     <script>
         suite('splash-screen', function() {
 
             test('instantiating the element with default properties works', function() {
                 var element = fixture('BasicTestFixture');
-                assert.equal(element.prop1, 'splash-screen');
-                var elementShadowRoot = element.shadowRoot;
-                var elementHeader = elementShadowRoot.querySelector('h2');
-                assert.equal(elementHeader.innerHTML, 'Hello splash-screen!');
+                assert.equal(element.align, 'middle');
+                assert.equal(element.show, true);
+                assert.equal(element.backgroundStyle, "#3498db");
+                // var elementShadowRoot = element.shadowRoot;
+                // var elementHeader = elementShadowRoot.querySelector('h2');
+                // assert.equal(elementHeader.innerHTML, 'Hello splash-screen!');
             });
 
-            test('setting a property on the element works', function() {
+            test('reusing the splash screen by not destrying it', function() {
                 // Create a test fixture
-                var element = fixture('ChangedPropertyTestFixture');
-                assert.equal(element.prop1, 'new-prop1');
-                var elementShadowRoot = element.shadowRoot;
-                var elementHeader = elementShadowRoot.querySelector('h2');
-                assert.equal(elementHeader.innerHTML, 'Hello new-prop1!');
+                var element = fixture('ReuseSplashScreen');
+                //assert.equal(element.destroy, false);
+                // var elementShadowRoot = element.shadowRoot;
+                // var elementHeader = elementShadowRoot.querySelector('h2');
+                assert.equal(element.tagName, 'SPLASH-SCREEN');
             });
+
+
 
         });
     </script>
