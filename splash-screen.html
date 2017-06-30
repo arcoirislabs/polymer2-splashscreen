@@ -179,7 +179,7 @@
                 }
             }
             _closeSplash(s) {
-                if (s) {
+                if (!s) {
                     this._destroyFunction(this.destroy);
                 } else {
                     this.updateStyles({

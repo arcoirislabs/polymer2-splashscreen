@@ -8,7 +8,7 @@
         z-index:2;
       }
     </style>
-    <splash-screen align="middle" show="[[close_splash]]" background-style="#432" destroy="[[destroy_splash]]">
+    <splash-screen align="middle" show="[[show_splash]]" background-style="#432" destroy="[[destroy_splash]]">
             <img src="icon.png" class="center-aligned" slot="logo" alt="">
             <div slot="content">
 
@@ -44,9 +44,9 @@
                         type: Boolean,
                         value: false
                     },
-                    close_splash: {
+                    show_splash: {
                         type: Boolean,
-                        value: false
+                        value: true
                     }
                 };
             }
@@ -58,7 +58,7 @@
                 var s = this;
                 Polymer.Async.timeOut.after(3000).run(function() {
                     console.log("closing");
-                    s.close_splash = true;
+                    s.show_splash = false;
                 });
             }
 
