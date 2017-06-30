@@ -1,10 +1,11 @@
 <link rel="import" href="../../polymer/polymer-element.html">
-<link rel="import" href="./../splash-screen.html">
+<link rel="import" href="../splash-screen.html">
 <dom-module id="splash-screen-demo-element">
     <template>
     <style>
       :host {
         display: block;
+        z-index:2;
       }
     </style>
     <splash-screen align="middle" show="[[close_splash]]" background-style="#432" destroy="[[destroy_splash]]">
@@ -38,25 +39,26 @@
             }
             static get properties() {
                 return {
-                    prop1: {
-                        type: String,
-                        value: 'splash-screen-demo-element'
-                    },
+
                     destroy_splash: {
                         type: Boolean,
-                        value: true
+                        value: false
                     },
                     close_splash: {
                         type: Boolean,
-                        value: true
+                        value: false
                     }
                 };
+            }
+            connectedCallback() {
+                super.connectedCallback();
             }
             ready() {
                 super.ready();
                 var s = this;
                 Polymer.Async.timeOut.after(3000).run(function() {
-                    s.close_splash = false;
+                    console.log("closing");
+                    s.close_splash = true;
                 });
             }
 

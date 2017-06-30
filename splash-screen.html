@@ -1,5 +1,5 @@
+<link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../polymer/polymer-element.html">
-
 <dom-module id="splash-screen">
     <template>
     <style>
@@ -168,34 +168,23 @@
                     }
                 };
             }
-            ready() {
-                super.ready();
-                console.log("ready");
-            }
 
-            disconnectedCallback() {
-                super.disconnectedCallback();
-                console.log("disco");
-            }
-            connectedCallback() {
-                super.connectedCallback();
-                console.log("conne")
-            }
-            _destroyFunction() {
-
-                if (this.destroy) {
+            _destroyFunction(d) {
+                if (d) {
                     this.remove();
-                }
-            }
-            _closeSplash(s) {
-                this.updateStyles({
-                    '--splash-screen-background': this.backgroundStyle || undefined
-                });
-                if (s) {
+                } else {
                     this.updateStyles({
                         'display': 'none'
                     });
-                    this._destroyFunction();
+                }
+            }
+            _closeSplash(s) {
+                if (s) {
+                    this._destroyFunction(this.destroy);
+                } else {
+                    this.updateStyles({
+                        '--splash-screen-background': this.backgroundStyle || undefined
+                    });
                 }
             }
         }
