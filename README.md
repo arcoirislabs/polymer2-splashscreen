@@ -2,6 +2,9 @@
 
 Splash Screen element for Polymer v2
 
+#### Demo
+
+[Demo](https://arcoirislabs.github.io/polymer2-splashscreen/bower_components/splash-screen/demo/)
 
 #### Important
 
