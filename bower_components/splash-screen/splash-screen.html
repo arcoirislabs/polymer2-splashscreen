@@ -1,0 +1,194 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../polymer/polymer-element.html">
+<dom-module id="splash-screen">
+    <template>
+    <style>
+       :host {
+        color:var(--splash-screen-color,#000);
+        height: 100%;
+        width: 100%;
+        overflow: auto;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 9999;
+      }
+
+       ::slotted(.center-aligned) {
+        text-align: center !important;
+        visibility:visible !important;
+      }
+      ::slotted(div) {
+        visibility:visible !important;
+      }
+
+      .splash {
+        background: var(--splash-screen-background, #fff);
+        width: 100%;
+        height: 100%;
+        float: left;
+        
+      }
+
+      .container {
+
+        text-align: center;
+        height: 100%;
+        position: relative;
+      }
+
+      .right .container {
+        height: 100%;
+      }
+
+      .vertical-align-wrap {
+        position: absolute;
+        width: inherit;
+        height: inherit;
+        display: table;
+      }
+
+      .vertical-align-wrap--middle {
+        width: 100%;
+      }
+
+      .vertical-align-wrap--middle-right {
+        position: relative;
+        float: right;
+        /*width: inherit;
+        height: inherit;*/
+      }
+
+      .vertical-align {
+
+        display: table-cell;
+      }
+
+      .vertical-align--middle {
+        vertical-align: middle;
+        text-align: center;
+      }
+
+      .vertical-align--middle-left {
+        vertical-align: middle;
+      }
+
+      .vertical-align--middle-right {
+        vertical-align: middle;
+      }
+
+      .vertical-align--bottom-middle {
+        vertical-align: bottom;
+        text-align: center;
+      }
+
+      .vertical-align--bottom-left {
+        vertical-align: bottom;
+        float: right;
+        bottom: 0;
+        left: 0;
+        position: absolute;
+      }
+
+      .vertical-align--bottom-right {
+        vertical-align: bottom;
+        float: right;
+        bottom: 0;
+        right: 0;
+        position: absolute;
+      }
+
+      .vertical-align--top-middle {
+        vertical-align: top;
+        text-align: center;
+      }
+
+      .vertical-align--top-left {
+        vertical-align: top;
+        text-align: center;
+        float: left;
+      }
+
+      .vertical-align--top-right {
+        vertical-align: top;
+        text-align: center;
+        float: right;
+      }
+
+      div {
+        @include box-sizing(border-box);
+      }
+    </style>
+    <div class="splash">
+      <div class="container">
+        <div class$="vertical-align-wrap vertical-align-wrap--{{align}}">
+          <div class$="vertical-align vertical-align--{{align}}">
+            <slot name="logo"></slot>
+            <slot name="content"></slot>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </template>
+
+    <script>
+        /**
+         * `splash-screen`
+         * Splash Screen element to show custom splash screen in the web page
+         *
+         * @customElement
+         * @polymer
+         * @demo demo/index.html
+         */
+        class SplashScreen extends Polymer.Element {
+            static get is() {
+                return 'splash-screen';
+            }
+            static get properties() {
+                return {
+                    align: {
+                        type: String,
+                    },
+                    background: {
+                        type: String
+                    },
+                    show: {
+                        type: Boolean,
+                        observer: '_closeSplash'
+                    },
+                    destroy: {
+                        type: Boolean
+                    },
+                    backgroundStyle: {
+                        type: String
+                    }
+                };
+            }
+
+            _destroyFunction(d) {
+                if (d) {
+                    this.remove();
+                } else {
+                    this.updateStyles({
+                        'display': 'none'
+                    });
+                }
+            }
+            _closeSplash(s) {
+                if (!s) {
+                    this._destroyFunction(this.destroy);
+                } else {
+                    this.updateStyles({
+                        '--splash-screen-background': this.backgroundStyle || undefined
+                    });
+                }
+            }
+        }
+
+        window.customElements.define(SplashScreen.is, SplashScreen);
+    </script>
+</dom-module>

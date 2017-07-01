@@ -1,0 +1,69 @@
+<link rel="import" href="../../polymer/polymer-element.html">
+<link rel="import" href="../splash-screen.html">
+<dom-module id="splash-screen-demo-element">
+    <template>
+    <style>
+      :host {
+        display: block;
+        z-index:2;
+      }
+    </style>
+    <splash-screen align="middle" show="[[show_splash]]" background-style="#432" destroy="[[destroy_splash]]">
+            <img src="icon.png" class="center-aligned" slot="logo" alt="">
+            <div slot="content">
+
+                <p>asjkdhakjshdkjash</p>
+            </div>
+
+        </splash-screen>
+    <div class="vertical-section-container centered">
+        <h3>Basic splash-screen demo</h3>
+        <p>In the <code>show</code> & <code>destroy</code> parameters, do not enter hardcoded values. Instead use Polymer's data binding technique to control the splashscreen.</p>
+        
+    </div>
+    
+  </template>
+
+    <script>
+        /**
+         * `splash-screen-demo-element`
+         * Demo element for splash-screen element
+         *
+         * @customElement
+         * @polymer
+         * @demo demo/index.html
+         */
+        class SplashScreenDemoElement extends Polymer.Element {
+            static get is() {
+                return 'splash-screen-demo-element';
+            }
+            static get properties() {
+                return {
+
+                    destroy_splash: {
+                        type: Boolean,
+                        value: false
+                    },
+                    show_splash: {
+                        type: Boolean,
+                        value: true
+                    }
+                };
+            }
+            connectedCallback() {
+                super.connectedCallback();
+            }
+            ready() {
+                super.ready();
+                var s = this;
+                Polymer.Async.timeOut.after(3000).run(function() {
+                    console.log("closing");
+                    s.show_splash = false;
+                });
+            }
+
+        }
+
+        window.customElements.define(SplashScreenDemoElement.is, SplashScreenDemoElement);
+    </script>
+</dom-module>

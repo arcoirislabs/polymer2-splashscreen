@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>splash-screen test</title>
+
+    <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../bower_components/web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../splash-screen.html">
+</head>
+
+<body>
+
+    <test-fixture id="BasicTestFixture">
+        <template>
+        <splash-screen align="middle" show="true" background-style="#3498db" destroy="false">
+                
+                <div slot="content">
+
+                  <h1>Welcome to splash-screen</h1>
+                </div>
+
+              </splash-screen>
+      </template>
+    </test-fixture>
+    <test-fixture id="ReuseSplashScreen">
+        <template>
+        <splash-screen align="middle" show="true" background-style="#3498db" destroy="false">
+                
+                <div slot="content">
+
+                  <h1>Welcome to splash-screen</h1>
+                </div>
+
+              </splash-screen>
+      </template>
+    </test-fixture>
+
+
+    <script>
+        suite('splash-screen', function() {
+
+            test('instantiating the element with default properties works', function() {
+                var element = fixture('BasicTestFixture');
+                assert.equal(element.align, 'middle');
+                assert.equal(element.show, true);
+                assert.equal(element.backgroundStyle, "#3498db");
+                // var elementShadowRoot = element.shadowRoot;
+                // var elementHeader = elementShadowRoot.querySelector('h2');
+                // assert.equal(elementHeader.innerHTML, 'Hello splash-screen!');
+            });
+
+            test('reusing the splash screen by not destrying it', function() {
+                // Create a test fixture
+                var element = fixture('ReuseSplashScreen');
+                //assert.equal(element.destroy, false);
+                // var elementShadowRoot = element.shadowRoot;
+                // var elementHeader = elementShadowRoot.querySelector('h2');
+                assert.equal(element.tagName, 'SPLASH-SCREEN');
+            });
+
+
+
+        });
+    </script>
+
+</body>
+
+</html>
