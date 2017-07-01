@@ -1,11 +1,14 @@
 # \<splash-screen\>
 
-Splash Screen element for Polymer v2 
+Splash Screen element for Polymer v2
 
+#### Demo
+
+[Demo](https://arcoirislabs.github.io/polymer2-splashscreen/bower_components/splash-screen/demo/)
 
 #### Important
 
-This element DOES NOT works with Polymer 1.x 
+This element DOES NOT works with Polymer 1.x
 
 The 1.x version will be available soon
 
@@ -57,6 +60,12 @@ This flag allows you to position your content of splashscreen in different posit
 `<splash-screen>` element is composed using specific slots inside the element. Here are the slot names allowed
 - `logo` - To set the logo image
 - `content` - Here you can set the content that follows the logo
+
+#### Custom CSS properties
+
+- `--splash-screen-color` - Sets the font color inside the content
+- `--splash-screen-background` - Sets the background of the splashscreen. Can be a `url()`, hex code.
+
 
 #### Viewing Your Element
 
